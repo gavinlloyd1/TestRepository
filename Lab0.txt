@@ -1,0 +1,94 @@
+// Gavin Lloyd, 2/6/2025
+// ENGR331 - Lab0
+
+#include <stdio.h>
+
+typedef struct {
+    int id;
+    char name[50];
+    float grades[7];
+    int numGrades;
+    float avgGrade;
+    char letterGrade;
+} Student;
+
+void calculateAverageAndGrade(Student *s) {
+	// if there are no grades in the grades array, set the average to 0 and the letter grade to X
+	if(s->numGrades == 0) {
+		s->avgGrade = 0;
+		s->letterGrade = 'X';
+	}
+	else {
+		// calculate the average grade
+		int total = 0;
+		int i = 0;
+		for(i; i < s->numGrades; i++) {
+			total += s->grades[i];
+		}
+		s->avgGrade = total / s->numGrades;
+		
+		// assigns a letter grade based on the average grade
+		if (s->avgGrade >= 90) {
+			s->letterGrade = 'A';
+		}
+		else if (s->avgGrade >= 80) {
+			s->letterGrade = 'B';
+		}
+		else if (s->avgGrade >= 70) {
+			s->letterGrade = 'C';
+		}
+		else if (s->avgGrade >= 60) {
+			s->letterGrade = 'D';
+		}
+		else {
+			s->letterGrade = 'F';
+		}
+	}
+	//printf("\ncalculateAverageAndGrade test:\n%.2f -- %C\n", s->avgGrade, s->letterGrade); // for testing
+}
+
+void setAverages(Student students[], int size) {
+    // loop through all students in the array and calculate their averages
+	for (int i = 0; i < size; i++) {
+		// loops through each students' grades
+		int total = 0;
+		for (int j = 0; j < students[i].numGrades; j++) {
+			total += students[i].grades[j];
+		}
+		students[i].avgGrade = total / students[i].numGrades;
+		//printf("\nsetAverages test #%i:\n%.2f\n", i + 1, students[i].avgGrade); // for testing
+	}
+}
+
+void printStudent(const Student *s) {
+    
+}
+
+void printAllStudents(const Student students[], int size) {
+    
+}
+
+void sortByAverage(Student students[], int size) {
+    
+}
+
+void sortByID(Student students[], int size) {
+    
+}
+
+int main() {
+    
+	Student students[5] = {
+		{101, "Alpha", {85, 90, 78}, 3, 0, 'X'},
+		{102, "Beta", {60, 70}, 2, 0, 'X'},
+		{103, "Kundan", {95, 100, 100, 100}, 4, 0, 'X'},
+		{104, "Delta", {50}, 1, 0, 'X'},
+		{105, "Etta", {72, 68, 75}, 3, 0, 'X'}
+	};
+	
+	calculateAverageAndGrade(&students[0]);
+	setAverages(students, 5);
+	
+    //while(1) {} // required in Embedded C
+    return 0;
+}
